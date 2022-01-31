@@ -168,10 +168,8 @@ def T5Trainer(dataframe, source_text, target_text, model_params, model_name, out
     # tokenzier for encoding the text
     tokenizer = T5Tokenizer.from_pretrained(model_params["MODEL"])
   
-    # add special tokens to tokenizer
-    special_tokens = []
-    for i in range(1000):
-        special_tokens.append('<MARKER-'+ str(i) +'>')
+    # add special tokens to tokenizer        
+    special_tokens = ['<extra_'+str(i)+'>' for i in range(31)]   
     tokenizer.add_tokens(special_tokens)
 
     # Defining the model. We are using t5-base model and added a Language model layer on top for generation of Summary. 
